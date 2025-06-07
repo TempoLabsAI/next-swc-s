@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { createClient } from '../../supabase/server'
+import { createClient } from '@/lib/supabase'
 import { Button } from './ui/button'
 import { User, UserCircle } from 'lucide-react'
 import UserProfile from './user-profile'

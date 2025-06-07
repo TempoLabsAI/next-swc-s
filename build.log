@@ -1,0 +1,37 @@
+
+> build
+> next build
+
+   ▲ Next.js 15.3.3
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings in 8.0s
+
+./node_modules/@supabase/realtime-js/dist/main/RealtimeClient.js
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+./node_modules/@supabase/realtime-js/dist/main/RealtimeClient.js
+./node_modules/@supabase/realtime-js/dist/main/index.js
+./node_modules/@supabase/supabase-js/dist/module/index.js
+./node_modules/@supabase/ssr/dist/module/createBrowserClient.js
+./node_modules/@supabase/ssr/dist/module/index.js
+./supabase/server.ts
+./src/app/page.tsx
+
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (100kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ✓ Compiled successfully in 19.0s
+   Linting and checking validity of types ...
+Failed to compile.
+
+./src/app/actions.ts:13:28
+Type error: Property 'get' does not exist on type 'Promise<ReadonlyHeaders>'.
+
+[0m [90m 11 |[39m   [36mconst[39m fullName [33m=[39m formData[33m.[39m[36mget[39m([32m"full_name"[39m)[33m?[39m[33m.[39mtoString() [33m||[39m [32m''[39m[33m;[39m[0m
+[0m [90m 12 |[39m   [36mconst[39m supabase [33m=[39m [36mawait[39m createClient()[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 13 |[39m   [36mconst[39m origin [33m=[39m headers()[33m.[39m[36mget[39m([32m"origin"[39m)[33m;[39m[0m
+[0m [90m    |[39m                            [31m[1m^[22m[39m[0m
+[0m [90m 14 |[39m[0m
+[0m [90m 15 |[39m   [36mif[39m ([33m![39memail [33m||[39m [33m![39mpassword) {[0m
+[0m [90m 16 |[39m     [36mreturn[39m encodedRedirect([0m
+Next.js build worker exited with code: 1 and signal: null

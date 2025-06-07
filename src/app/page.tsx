@@ -2,7 +2,7 @@ import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
 import { ArrowUpRight, CheckCircle2, Shield, Users, Zap } from 'lucide-react';
-import { createClient } from "../../supabase/server";
+import { createClient } from "@/lib/supabase";
 
 export default async function Home() {
   const supabase = await createClient();

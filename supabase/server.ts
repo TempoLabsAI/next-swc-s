@@ -1,7 +1,9 @@
+// src/lib/supabase/server.ts
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import type { CookieOptions, SupabaseClient } from "./types"; // Add this import
 
-export const createClient = async () => {
+export const createClient = (): SupabaseClient => { // Added return type
   const cookieStore = cookies();
 
   return createServerClient(
@@ -9,17 +11,22 @@ export const createClient = async () => {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll() {
-          return cookieStore.getAll().map(({ name, value }) => ({
-            name,
-            value,
+        getAll(): Array<{ name: string; value: string }> { // Added return type
+          return Array.from(cookieStore).map((cookie) => ({
+            name: cookie.name,
+            value: cookie.value,
           }));
         },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            cookieStore.set(name, value, options);
-          });
+        set(name: string, value: string, options: CookieOptions) { // Added type
+          try {
+            cookieStore.set({ name, value, ...options });
+          } catch (error) {
+            console.error("Cookie set error:", error);
+          }
         },
+        remove(name: string, options: CookieOptions) { // Added type
+          cookieStore.set({ name, value: "", ...options });
+        }
       },
     }
   );
